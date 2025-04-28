@@ -51,16 +51,6 @@ class TreeNode{
 }
 public class Day8P1 {
     public static TreeNode buildTree(List<Integer> arr , int start){
-        // if (start >= arr.size() || arr.get(start) == -1) {
-        //     return null;
-        // }
-
-        // TreeNode root = new TreeNode(arr.get(start));
-
-        // root.left = buildTree(arr, 2 * start + 1);
-        // root.right = buildTree(arr, 2 * start + 2);
-
-        // return root;
         TreeNode root = new TreeNode(arr.get(start));
         int j = 1;
         Queue<TreeNode> q = new LinkedList<>();

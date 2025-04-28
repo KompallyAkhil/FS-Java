@@ -52,28 +52,29 @@
 import java.util.*;
 public class Day18P4 {
     public static void main(String[] args) {
-        String s1 = "1123";
-        String s2 = "0111";
-        HashMap<Character,List<Integer>> hm = new HashMap<>();
+        Scanner sc = new Scanner(System.in);
+        String s1 = sc.next();
+        String s2 = sc.next();
+        int apples = 0;
+        int banans = 0;
+        HashMap<Character,Integer> hm1 = new HashMap<>();
+        HashMap<Character,Integer> hm2 = new HashMap<>();
         for(int i = 0 ; i < s1.length() ; i++){
-            List<Character> arr = new ArrayList<>();
-            arr.add(s1.charAt(i));
-            hm.put(s1.charAt(i), new ArrayList<>(s1.charAt(i)));
-        }
-        System.out.println(hm);
-        int apple = 0;
-        int banana = 0;
-        for(char i : s2.toCharArray()){
-            if(hm.containsKey(i)){
-                if(s2.indexOf(i) != s1.indexOf(i)){
-                    banana++;
-                }
+            if(s1.charAt(i) == s2.charAt(i)){
+                apples++;
             }
             else{
-                apple++;
+                hm1.put(s1.charAt(i),hm1.getOrDefault(s1.charAt(i),0)+1);
+                hm2.put(s2.charAt(i),hm2.getOrDefault(s2.charAt(i),0)+1);
             }
         }
-        System.out.println(apple + " " + banana);
+        for(char key : hm2.keySet()){
+            if(hm1.containsKey(key)){
+                banans += Math.min(hm1.get(key),hm2.get(key));
+            }
+        }
+        System.out.println(apples+"A"+banans+"B");
+        sc.close();
     }
     
 }

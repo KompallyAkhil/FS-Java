@@ -39,7 +39,7 @@ Sample Output-2:
 import java.util.*;
 public class Day13P3 {
     public static void main(String[] args) {
-        int n = 3;
+        int n = 1;
         List<List<Integer>> arr = new ArrayList<>();
         List<Integer> nums = new ArrayList<>();
         nums.add(1);
