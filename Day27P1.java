@@ -29,6 +29,7 @@ public class Day27P1 {
         int n = sc.nextInt();
         List<String> binaryString = new ArrayList<>();
         generateBinaryString(n,"",binaryString);
+        System.out.println(binaryString);
         List<Integer> answer = new ArrayList<>();
         for(String i : binaryString){
             answer.add(convert(i));
