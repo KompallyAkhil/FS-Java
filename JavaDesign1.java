@@ -135,7 +135,7 @@ class MovieReport {
         this.score = score;
         this.category = category;
     }
-
+    @Override
     public String toString() {
         return "Movie: " + movie.getTitle() + ", Score: " + String.format("%.1f", score) + ", Category: " + category;
     }
