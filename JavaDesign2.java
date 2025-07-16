@@ -85,6 +85,7 @@ public class JavaDesign2 {
             ProductInsight insight = engine.analyze(p);
             System.out.println(insight);
         }
+        sc.close();
     }
 }
 

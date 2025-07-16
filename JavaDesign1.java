@@ -85,6 +85,7 @@ public class JavaDesign1 {
             MovieReport report = analyzer.analyze(m);
             System.out.println(report);
         }
+        sc.close();
     }
 }
 

@@ -73,7 +73,53 @@
 // Sample Output-4:
 // ----------------
 // Invalid
-
+import java.util.*;
 public class EpamP2 {
-    
+     
+    public static String findAddressType(String addr) {
+        if (addr.contains(".")) {
+            String[] parts = addr.split("\\.");
+            if (parts.length != 4) return "Invalid";
+
+            for (String part : parts) {
+                if (part.isEmpty() || part.length() > 3) return "Invalid";
+                if (part.length() > 1 && part.charAt(0) == '0') return "Invalid";
+                for (char ch : part.toCharArray()) {
+                    if (!Character.isDigit(ch)) return "Invalid";
+                }
+                int num = Integer.parseInt(part);
+                if (num < 0 || num > 255) return "Invalid";
+            }
+            return "Type-I";
+
+        } else if (addr.contains(":")) {
+            // Check for Type-II
+            String[] parts = addr.split(":");
+            if (parts.length != 8) return "Invalid";
+
+            for (String part : parts) {
+                if (part.isEmpty() || part.length() > 4) return "Invalid";
+                for (char ch : part.toCharArray()) {
+                    if (!isHexChar(ch)) return "Invalid";
+                }
+            }
+            return "Type-II";
+
+        } else {
+            return "Invalid";
+        }
+    }
+
+    private static boolean isHexChar(char ch) {
+        return (ch >= '0' && ch <= '9') ||
+               (ch >= 'a' && ch <= 'f') ||
+               (ch >= 'A' && ch <= 'F');
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String addr = sc.nextLine();
+        System.out.println(findAddressType(addr));
+        sc.close();
+    }
 }

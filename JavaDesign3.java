@@ -110,6 +110,7 @@ public class JavaDesign3 {
         for (int i = 0; i < n; i++) {
             System.out.println(outputMap.get(i));
         }
+        sc.close();
     }
 }
 
