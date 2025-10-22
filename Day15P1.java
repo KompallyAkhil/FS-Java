@@ -1,4 +1,4 @@
-/*
+x/*
 You have been tasked with managing scores in a unique game. 
 The game begins with an empty scorecard. You are provided with a list 
 of operations represented as a string of characters, denoted as operations[i], 

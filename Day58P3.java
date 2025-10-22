@@ -66,7 +66,11 @@ public class Day58P3 {
         int l = sc.nextInt();
         generate("",n);
         Collections.sort(arr);
-        System.out.println(arr.get(l-1));
+        if (l <= arr.size())
+            System.out.println(arr.get(l - 1));
+        else
+            System.out.println("");
+
         sc.close();
     }
 }

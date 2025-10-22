@@ -75,7 +75,7 @@ public class Day64P2 {
 
         int mini = Math.min(checkHorizontal, Math.min(checkDiagonal, checkAntiDiagonal));
 
-        return + grid[i][j] + mini;
+        return grid[i][j] + mini;
     }
     public static void main(String [] args){
         Scanner sc = new Scanner(System.in);

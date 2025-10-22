@@ -37,25 +37,35 @@ Sample Output-2:
 3-6
 */
 import java.util.*;
+
 public class Day57P1 {
-    public static int toConvert(String s){
-        String [] parts = s.split("-");
-        StringBuilder sb = new StringBuilder();
-        for(String i : parts){
-            sb.append(i);
+    // Compare two version strings
+    public static int compareVersions(String v1, String v2) {
+        String[] a1 = v1.split("-");
+        String[] a2 = v2.split("-");
+        int n = Math.max(a1.length, a2.length);
+
+        for (int i = 0; i < n; i++) {
+            int num1 = i < a1.length ? Integer.parseInt(a1[i]) : 0;
+            int num2 = i < a2.length ? Integer.parseInt(a2[i]) : 0;
+
+            if (num1 != num2)
+                return num1 - num2; // positive means v1 > v2
         }
-        return Integer.valueOf(sb.toString());
+        return 0; // equal
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String [] s = sc.nextLine().split(" ");
-        List<Integer> arr = new ArrayList<>();
-        for(String i : s){
-            arr.add(toConvert(i));
+        String[] versions = sc.nextLine().split(" ");
+
+        String latest = versions[0];
+        for (int i = 1; i < versions.length; i++) {
+            if (compareVersions(versions[i], latest) > 0)
+                latest = versions[i];
         }
-        Collections.sort(arr);
-        System.out.println(arr);
+
+        System.out.println(latest);
         sc.close();
     }
 }

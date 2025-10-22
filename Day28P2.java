@@ -60,19 +60,46 @@
 import java.util.*;
 
 public class Day28P2 {
-    public static void main(String[] args) {
-        String s1 = "pqr";
-        String s2 = "rst";
-        String s3 = "rst";
-        HashMap<Character,Character> hm  = new HashMap<>();
-        for(int i = 0 ; i < s1.length() ; i++){
-            hm.put(s1.charAt(i),s2.charAt(i));
-        }
-        System.out.println(hm);
-        for(char i : hm.keySet()){
-            
+    static int[] parent = new int[26];
 
-    
+    // Find parent with path compression
+    static int find(int x) {
+        if (parent[x] == x) return x;
+        parent[x] = find(parent[x]);
+        return parent[x];
+    }
+
+    // Union operation - always attach larger to smaller (for smallest lexicographical)
+    static void union(int x, int y) {
+        int px = find(x);
+        int py = find(y);
+        if (px == py) return;
+        if (px < py) parent[py] = px;
+        else parent[px] = py;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String A = sc.next();
+        String B = sc.next();
+        String T = sc.next();
+
+        // initialize parents
+        for (int i = 0; i < 26; i++) parent[i] = i;
+
+        // make unions
+        for (int i = 0; i < A.length(); i++) {
+            union(A.charAt(i) - 'a', B.charAt(i) - 'a');
         }
+
+        // build smallest equivalent string
+        StringBuilder res = new StringBuilder();
+        for (char c : T.toCharArray()) {
+            int root = find(c - 'a');
+            res.append((char) (root + 'a'));
+        }
+
+        System.out.println(res.toString());
+        sc.close();
     }
 }
